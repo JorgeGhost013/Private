@@ -221,7 +221,7 @@ ul {
 }
 
 /* ==========================================================================
-   1. CABEÇALHO / HEADER FIXO
+   1. CABEÇALHO / HEADER FIXO - Superfície Azul Escuro (#0E223D)
    ========================================================================== */
 .site-header {
   position: fixed;
@@ -230,7 +230,7 @@ ul {
   width: 100%;
   height: 84px;
   z-index: 1000;
-  background: rgba(250, 247, 242, 0.94);
+  background: rgba(14, 34, 61, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(196, 160, 98, 0.25);
@@ -239,8 +239,8 @@ ul {
 
 .site-header.scrolled {
   height: 74px;
-  background: rgba(250, 247, 242, 0.98);
-  box-shadow: 0 4px 20px rgba(30, 58, 47, 0.08);
+  background: #0E223D;
+  box-shadow: 0 4px 25px rgba(5, 13, 26, 0.45);
 }
 
 .header-inner {
@@ -280,8 +280,8 @@ ul {
 
 .nav-link {
   font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--color-text-main);
+  font-weight: 500;
+  color: #FAF7F2;
   position: relative;
   padding: 6px 0;
   letter-spacing: 0.3px;
@@ -301,7 +301,7 @@ ul {
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-primary);
+  color: var(--color-gold-light);
 }
 
 .nav-link:hover::after,
@@ -315,8 +315,8 @@ ul {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: var(--color-primary);
-  color: var(--color-bg) !important;
+  background: var(--color-gold);
+  color: #0A192F !important;
   border: 1px solid var(--color-gold);
   border-radius: var(--radius-sm);
   font-weight: 600;
@@ -329,10 +329,10 @@ ul {
 }
 
 .nav-cta-btn:hover {
-  background: var(--color-primary-light);
+  background: var(--color-gold-light);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(196, 160, 98, 0.4);
+  color: #0A192F !important;
 }
 
 /* Menu Mobile Toggle */
@@ -342,7 +342,7 @@ ul {
   border: none;
   cursor: pointer;
   padding: 8px;
-  color: var(--color-primary);
+  color: #FAF7F2;
 }
 
 .mobile-toggle svg {
@@ -1928,8 +1928,8 @@ textarea.form-control {
     width: 100%;
     height: 0;
     overflow: hidden;
-    background: #FAF7F2;
-    border-bottom: 1px solid var(--color-border);
+    background: #0E223D;
+    border-bottom: 1px solid rgba(196, 160, 98, 0.25);
     transition: height 0.3s ease;
     box-shadow: var(--shadow-lg);
   }
