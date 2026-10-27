@@ -8,10 +8,10 @@
 
 :root {
   /* Cores Principais */
-  --color-bg: #FAF7F2;                /* Fundo principal bege/creme elegante */
+  --color-bg: #F7E8CE;                /* Fundo principal creme nobre puxado para o dourado/amarelo */
   --color-bg-card: #FFFFFF;           /* Superfície de cards branca refinada */
-  --color-bg-subtle: #F3ECE2;         /* Bege quente para contraste sutil */
-  --color-bg-alt: #EFE8DD;            /* Variação bege para divisores */
+  --color-bg-subtle: #EEDDC0;         /* Creme amendoado quente para contraste sutil */
+  --color-bg-alt: #E8D4B4;            /* Variação creme dourado para divisores */
   
   /* Paleta de Cores Jurídica: Azul Marinho Profundo & Cinza Chumbo */
   --color-primary: #0A192F;          /* Azul Marinho Profundo jurídico para botões e títulos */
@@ -34,7 +34,7 @@
   --color-text-inverse-muted: #CBD5E0;
   
   /* Estados e Utilitários */
-  --color-border: #E5DCD0;           /* Bordas suaves */
+  --color-border: #DFCA9F;           /* Bordas suaves no tom creme dourado */
   --color-border-dark: #1F3653;      /* Bordas no azul marinho */
   --color-success: #2E7D32;
   --color-whatsapp: #25D366;
@@ -565,7 +565,7 @@ ul {
   border-radius: var(--radius-lg);
   box-shadow: 0 24px 50px -12px rgba(20, 39, 32, 0.25);
   overflow: hidden;
-  background: #FAF7F2;
+  background: var(--color-bg);
   border: 3px solid rgba(196, 160, 98, 0.5);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -897,7 +897,7 @@ ul {
    ========================================================================== */
 .services-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #F3ECE2 0%, #FAF7F2 100%);
+  background: linear-gradient(180deg, #EEDDC0 0%, #F7E8CE 100%);
   position: relative;
 }
 
@@ -1258,7 +1258,7 @@ ul {
    ========================================================================== */
 .location-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #FAF7F2 0%, #F1E9DE 100%);
+  background: linear-gradient(180deg, #F7E8CE 0%, #EEDDC0 100%);
   position: relative;
 }
 
