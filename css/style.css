@@ -8,10 +8,10 @@
 
 :root {
   /* Cores Principais */
-  --color-bg: #F7E8CE;                /* Fundo principal creme nobre puxado para o dourado/amarelo */
+  --color-bg: #F5F7FA;                /* Fundo minimalista harmonizado com o azul marinho */
   --color-bg-card: #FFFFFF;           /* Superfície de cards branca refinada */
-  --color-bg-subtle: #EEDDC0;         /* Creme amendoado quente para contraste sutil */
-  --color-bg-alt: #E8D4B4;            /* Variação creme dourado para divisores */
+  --color-bg-subtle: #EDF2F7;         /* Tom suave de apoio para contraste limpo */
+  --color-bg-alt: #E2E8F0;            /* Divisores e fundos alternados minimalistas */
   
   /* Paleta de Cores Jurídica: Azul Marinho Profundo & Cinza Chumbo */
   --color-primary: #0A192F;          /* Azul Marinho Profundo jurídico para botões e títulos */
@@ -34,7 +34,7 @@
   --color-text-inverse-muted: #CBD5E0;
   
   /* Estados e Utilitários */
-  --color-border: #DFCA9F;           /* Bordas suaves no tom creme dourado */
+  --color-border: #E2E8F0;           /* Bordas suaves e minimalistas */
   --color-border-dark: #1F3653;      /* Bordas no azul marinho */
   --color-success: #2E7D32;
   --color-whatsapp: #25D366;
@@ -897,7 +897,7 @@ ul {
    ========================================================================== */
 .services-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #EEDDC0 0%, #F7E8CE 100%);
+  background: linear-gradient(180deg, #EDF2F7 0%, #F5F7FA 100%);
   position: relative;
 }
 
@@ -1258,7 +1258,7 @@ ul {
    ========================================================================== */
 .location-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #F7E8CE 0%, #EEDDC0 100%);
+  background: linear-gradient(180deg, #F5F7FA 0%, #EDF2F7 100%);
   position: relative;
 }
 
