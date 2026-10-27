@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <!-- Monogram Shield & Balance -->
+  <g transform="translate(10, 8)">
+    <rect x="0" y="0" width="64" height="64" rx="14" fill="#0A192F" />
+    <rect x="2" y="2" width="60" height="60" rx="12" stroke="#C4A062" stroke-width="1.5" stroke-opacity="0.8" fill="none" />
+    
+    <!-- Balance of Justice -->
+    <path d="M32 16 L32 48" stroke="#C4A062" stroke-width="2" stroke-linecap="round"/>
+    <path d="M22 22 L42 22" stroke="#C4A062" stroke-width="2" stroke-linecap="round"/>
+    <!-- Central pivot -->
+    <circle cx="32" cy="22" r="2.5" fill="#C4A062" />
+    
+    <!-- Left Scale -->
+    <path d="M22 22 L17 32 M22 22 L27 32" stroke="#C4A062" stroke-width="1" stroke-opacity="0.9"/>
+    <path d="M15 32 Q22 37 29 32 Z" fill="#C4A062" fill-opacity="0.4" stroke="#C4A062" stroke-width="1.2"/>
+    
+    <!-- Right Scale -->
+    <path d="M42 22 L37 32 M42 22 L47 32" stroke="#C4A062" stroke-width="1" stroke-opacity="0.9"/>
+    <path d="M35 32 Q42 37 49 32 Z" fill="#C4A062" fill-opacity="0.4" stroke="#C4A062" stroke-width="1.2"/>
+    
+    <!-- Base -->
+    <path d="M26 48 L38 48" stroke="#C4A062" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Typography -->
+  <text x="86" y="32" font-family="'Playfair Display', Georgia, serif" font-size="19" font-weight="700" fill="#0A192F" letter-spacing="1.2">
+    DRA. JULIANA ALVES
+  </text>
+  <text x="87" y="50" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#C4A062" letter-spacing="2.5">
+    ADVOCACIA TRABALHISTA
+  </text>
+  <text x="87" y="64" font-family="'Inter', sans-serif" font-size="9" font-weight="500" fill="#4A5568" letter-spacing="0.5">
+    DEFESA DOS DIREITOS DO TRABALHO
+  </text>
+</svg>

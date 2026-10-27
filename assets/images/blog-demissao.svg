@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380" fill="none">
+  <defs>
+    <linearGradient id="bgDemissao" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2C483B"/>
+      <stop offset="60%" stop-color="#1F362A"/>
+      <stop offset="100%" stop-color="#14241C"/>
+    </linearGradient>
+    <linearGradient id="goldDemissao" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5DF98"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="380" rx="16" fill="url(#bgDemissao)"/>
+
+  <!-- Background decorative document contours -->
+  <rect x="60" y="50" width="130" height="170" rx="8" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="2" fill="none" transform="rotate(-8 60 50)"/>
+  <rect x="420" y="60" width="130" height="170" rx="8" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="2" fill="none" transform="rotate(10 420 60)"/>
+
+  <!-- Central Composition: Contract & Resignation calculation quill & scales -->
+  <g transform="translate(195, 45)">
+    <!-- Document Backdrop -->
+    <rect x="0" y="0" width="210" height="165" rx="10" fill="#FAF7F2" stroke="url(#goldDemissao)" stroke-width="2"/>
+    
+    <!-- Top badge -->
+    <rect x="15" y="15" width="180" height="22" rx="4" fill="#244436"/>
+    <text x="105" y="30" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="700" fill="#E2C799" letter-spacing="1">
+      PEDIDO DE DEMISSÃO
+    </text>
+
+    <!-- Document Lines -->
+    <line x1="25" y1="52" x2="185" y2="52" stroke="#4B5563" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="25" y1="67" x2="155" y2="67" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+    <line x1="25" y1="82" x2="175" y2="82" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Checklist icons on document -->
+    <circle cx="35" cy="107" r="7" fill="#10B981"/>
+    <path d="M31 107 L34 110 L39 104" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="50" y="111" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#1F2937">13º e Férias Proporcionais</text>
+
+    <circle cx="35" cy="129" r="7" fill="#EF4444"/>
+    <path d="M32 126 L38 132 M38 126 L32 132" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="50" y="133" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#1F2937">Multa 40% &amp; Saque FGTS</text>
+
+    <!-- Stamp of Dra. Juliana Alves -->
+    <g transform="translate(130, 100) rotate(-12)">
+      <rect x="0" y="0" width="70" height="34" rx="4" fill="none" stroke="#B91C1C" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <text x="35" y="14" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="7.5" font-weight="700" fill="#B91C1C">DIREITOS</text>
+      <text x="35" y="26" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="6.5" font-weight="700" fill="#B91C1C">RESCISÓRIOS</text>
+    </g>
+  </g>
+
+  <!-- Info Card Below -->
+  <g transform="translate(130, 230)">
+    <rect x="0" y="0" width="340" height="110" rx="14" fill="#162920" stroke="url(#goldDemissao)" stroke-width="1.5"/>
+    <text x="170" y="32" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#E2C799" letter-spacing="1.5">
+      GUIA PRÁTICO DO TRABALHADOR
+    </text>
+    <text x="170" y="58" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">
+      O que você recebe e o que perde?
+    </text>
+    <text x="170" y="80" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="500" fill="#A8BCB1">
+      Aviso Prévio • Rescisão Indireta • Acordo Mútuo
+    </text>
+    <text x="170" y="98" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10.5" font-weight="600" fill="url(#goldDemissao)">
+      Consulte seus direitos antes de assinar a rescisão
+    </text>
+  </g>
+</svg>

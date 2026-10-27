@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+  <rect width="80" height="80" rx="20" fill="#244033" />
+  <rect x="2" y="2" width="76" height="76" rx="18" stroke="#C4A062" stroke-width="1.5" stroke-opacity="0.6" fill="none"/>
+  <!-- Gavel and Law Shield -->
+  <!-- Shield outline -->
+  <path d="M40 18 L58 25 C58 45 40 58 40 58 C40 58 22 45 22 25 L40 18 Z" fill="#1A2F25" stroke="#C4A062" stroke-width="2"/>
+  <!-- Gavel inside shield -->
+  <g transform="translate(40, 36) rotate(-35) translate(-40, -36)">
+    <rect x="33" y="26" width="14" height="8" rx="2" fill="#E2C799"/>
+    <rect x="38" y="34" width="4" height="18" rx="2" fill="#E2C799"/>
+    <rect x="30" y="52" width="20" height="4" rx="2" fill="#C4A062"/>
+  </g>
+</svg>

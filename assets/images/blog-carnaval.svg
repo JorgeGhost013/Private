@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="600" height="380" fill="none">
+  <defs>
+    <linearGradient id="bgCarnaval" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#274135"/>
+      <stop offset="60%" stop-color="#1B3227"/>
+      <stop offset="100%" stop-color="#12231A"/>
+    </linearGradient>
+    <linearGradient id="goldAcc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7DF94"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="380" rx="16" fill="url(#bgCarnaval)"/>
+  
+  <!-- Subtle festive confetti shapes -->
+  <circle cx="80" cy="70" r="14" fill="#E2C799" opacity="0.2"/>
+  <circle cx="520" cy="90" r="22" fill="#E2C799" opacity="0.15"/>
+  <circle cx="480" cy="290" r="12" fill="#E2C799" opacity="0.25"/>
+  <circle cx="110" cy="300" r="18" fill="#E2C799" opacity="0.15"/>
+  <path d="M70 180 L90 190 L80 210 Z" fill="#E2C799" opacity="0.25"/>
+  <path d="M510 200 L530 210 L520 230 Z" fill="#E2C799" opacity="0.25"/>
+
+  <!-- Center Decorative Composition -->
+  <!-- Carnival Mask stylized in gold and emerald -->
+  <g transform="translate(190, 60)">
+    <!-- Glow -->
+    <ellipse cx="110" cy="90" rx="130" ry="80" fill="#D4AF37" opacity="0.12" filter="blur(25px)"/>
+
+    <!-- Mask Body -->
+    <path d="M20 90 C15 50, 60 40, 110 65 C160 40, 205 50, 200 90 C195 125, 145 135, 110 105 C75 135, 25 125, 20 90 Z" fill="#244436" stroke="url(#goldAcc)" stroke-width="3"/>
+    
+    <!-- Mask eye cutouts -->
+    <ellipse cx="65" cy="85" rx="24" ry="14" fill="#12231A" stroke="url(#goldAcc)" stroke-width="2"/>
+    <ellipse cx="155" cy="85" rx="24" ry="14" fill="#12231A" stroke="url(#goldAcc)" stroke-width="2"/>
+
+    <!-- Mask crown feathers & flourish -->
+    <path d="M110 65 C100 20, 110 10, 110 5 C110 10, 120 20, 110 65 Z" fill="url(#goldAcc)"/>
+    <path d="M95 67 C70 30, 80 15, 75 10 C80 20, 90 35, 95 67 Z" fill="#D4AF37" opacity="0.8"/>
+    <path d="M125 67 C150 30, 140 15, 145 10 C140 20, 130 35, 125 67 Z" fill="#D4AF37" opacity="0.8"/>
+    
+    <!-- Filigree swirls -->
+    <path d="M65 85 Q75 100 85 92" stroke="url(#goldAcc)" stroke-width="1.5" fill="none"/>
+    <path d="M155 85 Q145 100 135 92" stroke="url(#goldAcc)" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- Legal Calendar & Clock Elements below mask -->
+  <g transform="translate(180, 200)">
+    <!-- Calendar Card -->
+    <rect x="0" y="0" width="240" height="120" rx="14" fill="#172C22" stroke="url(#goldAcc)" stroke-width="1.5"/>
+    <path d="M0 0 L240 0 L240 36 L0 36 Z" fill="#254234"/>
+    
+    <!-- Calendar Header -->
+    <circle cx="45" cy="18" r="4" fill="url(#goldAcc)"/>
+    <circle cx="195" cy="18" r="4" fill="url(#goldAcc)"/>
+    <text x="120" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#E2C799" letter-spacing="1.5">
+      LEGISLAÇÃO TRABALHISTA
+    </text>
+
+    <!-- Content -->
+    <text x="120" y="65" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">
+      Carnaval é Feriado Oficial?
+    </text>
+    <text x="120" y="86" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="500" fill="#9DB1A6">
+      CLT • Acordos Coletivos • Banco de Horas
+    </text>
+    <text x="120" y="104" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="url(#goldAcc)">
+      Entenda regras para folgas e pagamentos
+    </text>
+  </g>
+</svg>
