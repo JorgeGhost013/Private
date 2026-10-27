@@ -1,4 +1,4 @@
-/**
+﻿/**
  * DRA. JULIANA ALVES - ADVOCACIA TRABALHISTA
  * Interatividade, Máscaras, Status de Expediente, Modais do Blog & Agendamento
  */
@@ -231,80 +231,45 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const name = document.getElementById('clientName').value.trim();
-      const email = document.getElementById('clientEmail').value.trim();
       const phone = document.getElementById('clientPhone').value.trim();
       const profile = document.getElementById('clientProfile').value;
       const message = document.getElementById('clientMessage').value.trim();
 
-      if (!name || !email || !phone || !message) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
+      if (!name || !phone) {
+        alert('Por favor, informe ao menos o seu Nome e Telefone/WhatsApp.');
+        document.getElementById('clientName').focus();
         return;
       }
 
-      // Simulação de envio com feedback visual elegante
-      const submitBtn = appointmentForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `
-        <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
-          <path d="M12 2a10 10 0 0 1 10 10"></path>
-        </svg> Enviando Solicitação...
-      `;
+      let whatsappText = *SOLICITAÇÃO DE AGENDAMENTO DE CONSULTA*\n\n;
+      whatsappText += Olá, Dra. Juliana Alves! Gostaria de agendar uma consulta jurídica trabalhista.\n\n;
+      whatsappText += 👤 *Nome:* \n;
+      whatsappText += 📱 *Telefone/WhatsApp:* \n;
+      whatsappText += 📌 *Perfil:* C:\Users\Kayn\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1\n;
+      if (message) {
+        whatsappText += 📝 *Resumo do caso:* \n;
+      }
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
+      const encodedMsg = encodeURIComponent(whatsappText);
+      const whatsappUrl = https://wa.me/5513996012470?text=;
 
-        if (formFeedback) {
-          formFeedback.className = 'form-feedback success';
-          formFeedback.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            <div>
-              <strong>Mensagem enviada com sucesso, ${name}!</strong>
-              <p style="margin: 4px 0 0 0; font-size: 0.85rem;">Recebemos sua solicitação de agendamento. A Dra. Juliana Alves ou equipe entrará em contato em breve pelo telefone/WhatsApp informado.</p>
-            </div>
-          `;
-          formFeedback.style.display = 'flex';
-          appointmentForm.reset();
+      if (formFeedback) {
+        formFeedback.className = 'form-feedback success';
+        formFeedback.innerHTML = 
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <div>
+            <strong>Abrindo o WhatsApp da Dra. Juliana Alves...</strong>
+            <p style="margin: 4px 0 0 0; font-size: 0.85rem;">Sua solicitação foi preparada. Se o WhatsApp não abrir automaticamente, <a href="" target="_blank" style="text-decoration: underline; font-weight: 700; color: inherit;">clique aqui</a>.</p>
+          </div>
+        ;
+        formFeedback.style.display = 'flex';
+      }
 
-          // Rolar suavemente até o feedback
-          formFeedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 1200);
+      window.open(whatsappUrl, '_blank');
     });
-
-    // Envio Direto via WhatsApp com Mensagem Formatada
-    if (btnSubmitWhatsapp) {
-      btnSubmitWhatsapp.addEventListener('click', () => {
-        const name = document.getElementById('clientName').value.trim();
-        const email = document.getElementById('clientEmail').value.trim();
-        const phone = document.getElementById('clientPhone').value.trim();
-        const profile = document.getElementById('clientProfile').value;
-        const message = document.getElementById('clientMessage').value.trim();
-
-        if (!name || !phone) {
-          alert('Por favor, informe ao menos o seu Nome e Telefone para iniciar o atendimento no WhatsApp.');
-          document.getElementById('clientName').focus();
-          return;
-        }
-
-        let whatsappText = `*SOLICITAÇÃO DE AGENDAMENTO / CONSULTA TRABALHISTA*\n\n`;
-        whatsappText += `*Nome:* ${name}\n`;
-        if (email) whatsappText += `*E-mail:* ${email}\n`;
-        whatsappText += `*Telefone:* ${phone}\n`;
-        whatsappText += `*Perfil:* ${profile}\n`;
-        if (message) whatsappText += `*Motivo/Dúvida:* ${message}\n\n`;
-        whatsappText += `Olá, Dra. Juliana Alves! Gostaria de uma orientação jurídica trabalhista.`;
-
-        const encodedMsg = encodeURIComponent(whatsappText);
-        const whatsappUrl = `https://wa.me/5513996012470?text=${encodedMsg}`;
-        window.open(whatsappUrl, '_blank');
-      });
-    }
   }
 
   // 7. MODAIS DE LEITURA COMPLETA DO BLOG
