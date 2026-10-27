@@ -13,11 +13,11 @@
   --color-bg-subtle: #EEDDC0;         /* Creme amendoado quente para contraste sutil */
   --color-bg-alt: #E8D4B4;            /* Variação creme dourado para divisores */
   
-  /* Paleta de Cores Jurídica: Azul Marinho Profundo & Cinza Chumbo */
-  --color-primary: #0A192F;          /* Azul Marinho Profundo jurídico para botões e títulos */
-  --color-primary-dark: #050D1A;     /* Azul Marinho Noite (rodapé e destaque) */
-  --color-primary-light: #172A46;    /* Azul Marinho Médio para hover */
-  --color-primary-surface: #0E223D;  /* Superfície em azul marinho */
+  /* Paleta de Cores Jurídica: Dourado Nobre (Borda OAB #C4A062) & Cinza Chumbo */
+  --color-primary: #C4A062;          /* Dourado Nobre da borda da OAB */
+  --color-primary-dark: #9E7D44;     /* Dourado Âmbar profundo */
+  --color-primary-light: #DFBF88;    /* Dourado claro */
+  --color-primary-surface: #C4A062;  /* Superfície em Dourado Nobre */
   --color-slate: #2D3748;            /* Cinza Chumbo corporativo */
   
   /* Acentos Dourados / Champagne */
@@ -35,7 +35,7 @@
   
   /* Estados e Utilitários */
   --color-border: #DFCA9F;           /* Bordas suaves no tom creme dourado */
-  --color-border-dark: #1F3653;      /* Bordas no azul marinho */
+  --color-border-dark: #8C6B30;      /* Bordas no tom dourado âmbar */
   --color-success: #2E7D32;
   --color-whatsapp: #25D366;
   --color-whatsapp-hover: #1EBE5D;
@@ -87,7 +87,7 @@ body {
 /* Tipografia Global Premium: Playfair Display para Títulos e Inter para Textos */
 h1, h2, h3 {
   font-family: 'Playfair Display', Georgia, serif;
-  color: var(--color-primary);
+  color: var(--color-slate);
 }
 
 p, a, span {
@@ -221,7 +221,7 @@ ul {
 }
 
 /* ==========================================================================
-   1. CABEÇALHO / HEADER FIXO - Superfície Azul Escuro (#0E223D)
+   1. CABEÇALHO / HEADER FIXO - Dourado Nobre (#C4A062)
    ========================================================================== */
 .site-header {
   position: fixed;
@@ -230,17 +230,17 @@ ul {
   width: 100%;
   height: 84px;
   z-index: 1000;
-  background: rgba(14, 34, 61, 0.95);
+  background: rgba(196, 160, 98, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(196, 160, 98, 0.25);
+  border-bottom: 1px solid rgba(158, 125, 68, 0.4);
   transition: var(--transition);
 }
 
 .site-header.scrolled {
   height: 74px;
-  background: #0E223D;
-  box-shadow: 0 4px 25px rgba(5, 13, 26, 0.45);
+  background: #C4A062;
+  box-shadow: 0 4px 20px rgba(100, 75, 30, 0.25);
 }
 
 .header-inner {
@@ -280,8 +280,8 @@ ul {
 
 .nav-link {
   font-size: 0.9375rem;
-  font-weight: 500;
-  color: #FAF7F2;
+  font-weight: 600;
+  color: #1A202C;
   position: relative;
   padding: 6px 0;
   letter-spacing: 0.3px;
@@ -295,18 +295,19 @@ ul {
   left: 0;
   width: 0%;
   height: 2px;
-  background: var(--color-gold);
+  background: #1A202C;
   transition: var(--transition);
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-gold-light);
+  color: #FFFFFF;
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
+  background: #FFFFFF;
 }
 
 /* Botão de Destaque no Menu (Agendamento) */
@@ -315,9 +316,9 @@ ul {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  background: var(--color-gold);
-  color: #0A192F !important;
-  border: 1px solid var(--color-gold);
+  background: #1A202C;
+  color: #F7E8CE !important;
+  border: 1px solid #1A202C;
   border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.9375rem;
@@ -329,10 +330,10 @@ ul {
 }
 
 .nav-cta-btn:hover {
-  background: var(--color-gold-light);
+  background: #2D3748;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(196, 160, 98, 0.4);
-  color: #0A192F !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF !important;
 }
 
 /* Menu Mobile Toggle */
@@ -342,7 +343,7 @@ ul {
   border: none;
   cursor: pointer;
   padding: 8px;
-  color: #FAF7F2;
+  color: #1A202C;
 }
 
 .mobile-toggle svg {
@@ -375,10 +376,10 @@ ul {
   pointer-events: none;
 }
 
-/* Overlay de Contraste Escuro Semi-transparente (Crucial) */
+/* Overlay de Contraste Neutro/Âmbar Quente (zero azul) */
 .hero-section::before {
   content: '';
-  background: rgba(10, 15, 30, 0.65);
+  background: rgba(22, 17, 12, 0.68);
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -449,7 +450,7 @@ ul {
 
 .hero-actions .btn-primary {
   background-color: var(--color-gold);
-  color: #0A192F;
+  color: #1A202C;
   border-color: var(--color-gold-light);
   font-weight: 700;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
@@ -457,7 +458,7 @@ ul {
 
 .hero-actions .btn-primary:hover {
   background-color: var(--color-gold-light);
-  color: #0A192F;
+  color: #1A202C;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(196, 160, 98, 0.45);
 }
@@ -785,9 +786,9 @@ ul {
   position: absolute;
   top: -20px;
   right: -20px;
-  background: var(--color-primary);
-  color: #FFFFFF;
-  border: 2px solid var(--color-gold);
+  background: var(--color-gold);
+  color: #1A202C;
+  border: 2px solid #8C6B30;
   border-radius: var(--radius-full);
   width: 105px;
   height: 105px;
@@ -796,7 +797,7 @@ ul {
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 24px rgba(100, 75, 30, 0.3);
   transform: rotate(8deg);
 }
 
@@ -804,15 +805,16 @@ ul {
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-gold-light);
+  color: #1A202C;
   line-height: 1;
 }
 
 .about-experience-stamp .label {
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
+  color: #2D3748;
 }
 
 .about-content .about-title {
@@ -1651,14 +1653,14 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   RODAPÉ (FOOTER EM VERDE OLIVA ESCURO)
+   RODAPÉ (FOOTER EM DOURADO NOBRE #C4A062)
    ========================================================================== */
 .site-footer {
-  background: var(--color-primary-dark);
-  color: var(--color-text-inverse-muted);
+  background: #C4A062;
+  color: #1A202C;
   padding-top: 80px;
   padding-bottom: 30px;
-  border-top: 2px solid var(--color-gold);
+  border-top: 3px solid #9E7D44;
   position: relative;
 }
 
@@ -1667,7 +1669,7 @@ textarea.form-control {
   grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
   gap: 40px;
   padding-bottom: 50px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .footer-brand-col p {
@@ -1675,7 +1677,7 @@ textarea.form-control {
   line-height: 1.7;
   margin-top: 18px;
   margin-bottom: 22px;
-  color: var(--color-text-inverse-muted);
+  color: #2D3748;
 }
 
 .footer-logo-img {
@@ -1693,25 +1695,25 @@ textarea.form-control {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(196, 160, 98, 0.3);
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-gold-light);
+  color: #1A202C;
   transition: var(--transition);
 }
 
 .footer-social-btn:hover {
-  background: var(--color-gold);
-  color: var(--color-primary);
+  background: #1A202C;
+  color: #FAF7F2;
   transform: translateY(-3px);
 }
 
 .footer-col h4 {
   font-family: var(--font-heading);
   font-size: 1.15rem;
-  color: #FFFFFF;
+  color: #1A202C;
   margin-bottom: 22px;
   position: relative;
   padding-bottom: 10px;
@@ -1724,7 +1726,7 @@ textarea.form-control {
   left: 0;
   width: 32px;
   height: 2px;
-  background: var(--color-gold);
+  background: #1A202C;
 }
 
 .footer-links-list li {
@@ -1732,7 +1734,7 @@ textarea.form-control {
 }
 
 .footer-links-list a {
-  color: var(--color-text-inverse-muted);
+  color: #2D3748;
   font-size: 0.9375rem;
   transition: var(--transition);
   display: inline-flex;
@@ -1741,7 +1743,7 @@ textarea.form-control {
 }
 
 .footer-links-list a:hover {
-  color: var(--color-gold-light);
+  color: #000000;
   transform: translateX(4px);
 }
 
@@ -1751,24 +1753,25 @@ textarea.form-control {
   gap: 12px;
   margin-bottom: 16px;
   font-size: 0.9375rem;
+  color: #2D3748;
 }
 
 .footer-contact-item svg {
   width: 18px;
   height: 18px;
-  color: var(--color-gold-light);
+  color: #1A202C;
   flex-shrink: 0;
   margin-top: 3px;
 }
 
 .footer-oab-badge {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(196, 160, 98, 0.3);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-sm);
   padding: 14px;
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: var(--color-gold-light);
+  color: #1A202C;
 }
 
 .footer-bottom {
@@ -1779,17 +1782,18 @@ textarea.form-control {
   flex-wrap: wrap;
   gap: 16px;
   font-size: 0.8125rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .footer-copyright {
-  color: var(--color-text-inverse-muted);
+  color: #2D3748;
 }
 
 .footer-back-to-top {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--color-gold-light);
+  color: #1A202C;
   font-weight: 600;
   background: transparent;
   border: none;
@@ -1798,7 +1802,7 @@ textarea.form-control {
 }
 
 .footer-back-to-top:hover {
-  color: #FFFFFF;
+  color: #000000;
   transform: translateY(-2px);
 }
 
@@ -1928,8 +1932,8 @@ textarea.form-control {
     width: 100%;
     height: 0;
     overflow: hidden;
-    background: #0E223D;
-    border-bottom: 1px solid rgba(196, 160, 98, 0.25);
+    background: #C4A062;
+    border-bottom: 1px solid rgba(158, 125, 68, 0.4);
     transition: height 0.3s ease;
     box-shadow: var(--shadow-lg);
   }
