@@ -1154,7 +1154,7 @@ ul {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(14, 26, 21, 0.75);
+  background: rgba(14, 34, 61, 0.75);
   backdrop-filter: blur(6px);
   z-index: 2000;
   display: flex;

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * DRA. JULIANA ALVES - ADVOCACIA TRABALHISTA
  * Interatividade, Máscaras, Status de Expediente, Modais do Blog & Agendamento
  */
@@ -198,19 +198,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateOfficeStatus();
 
-  // 5. MÁSCARA DE TELEFONE (XX) XXXXX-XXXX
+  // 5. MÁSCARA E LIMITAÇÃO ESTRITA DE 11 NÚMEROS NO WHATSAPP: (XX) XXXXX-XXXX
   const phoneInput = document.getElementById('clientPhone');
   if (phoneInput) {
-    phoneInput.addEventListener('input', (e) => {
-      let val = e.target.value.replace(/\D/g, '');
-      if (val.length > 11) val = val.slice(0, 11);
+    phoneInput.setAttribute('maxlength', '15');
+    phoneInput.setAttribute('inputmode', 'numeric');
 
+    phoneInput.addEventListener('input', (e) => {
+      // Manter apenas números e limitar estritamente a 11 dígitos
+      let val = e.target.value.replace(/\D/g, '');
+      if (val.length > 11) {
+        val = val.substring(0, 11);
+      }
+
+      // Aplicação da máscara com formatação dinâmica progressiva
       if (val.length > 10) {
-        // (XX) XXXXX-XXXX
+        // Formato padrão celular completo com 11 dígitos: (XX) 9XXXX-XXXX
         val = val.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
       } else if (val.length > 6) {
-        // (XX) XXXX-XXXX
-        val = val.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+        val = val.replace(/^(\d{2})(\d{4,5})(\d{0,4})$/, '($1) $2-$3');
       } else if (val.length > 2) {
         val = val.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
       } else if (val.length > 0) {
@@ -220,51 +226,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. FORMULÁRIO DE AGENDAMENTO & CONTATO
+  // 6. FORMULÁRIO DE AGENDAMENTO EXCLUSIVO VIA WHATSAPP
   const appointmentForm = document.getElementById('appointmentForm');
   const formFeedback = document.getElementById('formFeedback');
-  const btnSubmitWhatsapp = document.getElementById('btnSubmitWhatsapp');
 
   if (appointmentForm) {
-    // Envio Padrão
     appointmentForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('clientName').value.trim();
-      const phone = document.getElementById('clientPhone').value.trim();
-      const profile = document.getElementById('clientProfile').value;
-      const message = document.getElementById('clientMessage').value.trim();
+      const nameInput = document.getElementById('clientName');
+      const phoneInput = document.getElementById('clientPhone');
+      const profileInput = document.getElementById('clientProfile');
+      const typeInput = document.getElementById('clientAppointmentType');
+      const messageInput = document.getElementById('clientMessage');
 
-      if (!name || !phone) {
-        alert('Por favor, informe ao menos o seu Nome e Telefone/WhatsApp.');
-        document.getElementById('clientName').focus();
+      const name = nameInput ? nameInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const profile = profileInput ? profileInput.value : '';
+      const type = typeInput ? typeInput.value : '';
+      const message = messageInput ? messageInput.value.trim() : '';
+
+      if (!name) {
+        alert('Por favor, informe seu Nome Completo.');
+        if (nameInput) nameInput.focus();
         return;
       }
 
-      let whatsappText = *SOLICITAÇÃO DE AGENDAMENTO DE CONSULTA*\n\n;
-      whatsappText += Olá, Dra. Juliana Alves! Gostaria de agendar uma consulta jurídica trabalhista.\n\n;
-      whatsappText += 👤 *Nome:* \n;
-      whatsappText += 📱 *Telefone/WhatsApp:* \n;
-      whatsappText += 📌 *Perfil:* C:\Users\Kayn\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1\n;
+      // Validação estrita de 11 números para WhatsApp (DDD de 2 dígitos + 9 dígitos de celular)
+      const rawDigits = phone.replace(/\D/g, '');
+      if (rawDigits.length !== 11) {
+        alert('Por favor, informe um número de WhatsApp válido com exatamente 11 dígitos (DDD + 9 dígitos).\nExemplo: (13) 99601-2470');
+        if (phoneInput) phoneInput.focus();
+        return;
+      }
+
+      let whatsappText = '*SOLICITAÇÃO DE AGENDAMENTO DE CONSULTA*\n\n';
+      whatsappText += 'Olá, Dra. Juliana Alves! Gostaria de solicitar um agendamento de consulta trabalhista.\n\n';
+      whatsappText += '👤 *Nome:* ' + name + '\n';
+      whatsappText += '📱 *WhatsApp:* ' + phone + '\n';
+      whatsappText += '📌 *Perfil:* ' + profile + '\n';
+      if (type) {
+        whatsappText += '🏛️ *Formato:* ' + type + '\n';
+      }
       if (message) {
-        whatsappText += 📝 *Resumo do caso:* \n;
+        whatsappText += '📝 *Resumo do caso:* ' + message + '\n';
       }
 
       const encodedMsg = encodeURIComponent(whatsappText);
-      const whatsappUrl = https://wa.me/5513996012470?text=;
+      const whatsappUrl = 'https://wa.me/5513996012470?text=' + encodedMsg;
 
       if (formFeedback) {
         formFeedback.className = 'form-feedback success';
-        formFeedback.innerHTML = 
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <div>
-            <strong>Abrindo o WhatsApp da Dra. Juliana Alves...</strong>
-            <p style="margin: 4px 0 0 0; font-size: 0.85rem;">Sua solicitação foi preparada. Se o WhatsApp não abrir automaticamente, <a href="" target="_blank" style="text-decoration: underline; font-weight: 700; color: inherit;">clique aqui</a>.</p>
-          </div>
-        ;
+        formFeedback.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><div><strong>Abrindo seu WhatsApp com a solicitação pronta...</strong><p style="margin: 4px 0 0 0; font-size: 0.85rem;">Se a conversa não abrir automaticamente, <a href="' + whatsappUrl + '" target="_blank" style="text-decoration: underline; font-weight: 700; color: inherit;">clique aqui para abrir</a>.</p></div>';
         formFeedback.style.display = 'flex';
       }
 
@@ -272,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. MODAIS DE LEITURA COMPLETA DO BLOG
+  // 7. BASE DE MATÉRIAS COMPLETAS DO BLOG
   const blogArticlesData = {
     'carnaval': {
       title: 'Carnaval é feriado? Atenção, trabalhador!',
@@ -368,28 +381,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // 8. CONTROLE DO MODAL DE MATÉRIA COMPLETA
   const modalOverlay = document.getElementById('blogModal');
   const modalBody = document.getElementById('blogModalBody');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
-  const blogReadButtons = document.querySelectorAll('[data-blog-id]');
 
   const openBlogModal = (articleId) => {
     const article = blogArticlesData[articleId];
     if (!article || !modalBody || !modalOverlay) return;
 
     modalBody.innerHTML = `
-      <div class="badge-tag" style="margin-bottom: 12px;">${article.category}</div>
+      <div class="badge-tag" style="margin-bottom: 12px; background: rgba(196, 160, 98, 0.15); color: #C4A062; border-color: rgba(196, 160, 98, 0.3);">${article.category}</div>
       <div class="blog-meta" style="margin-bottom: 16px;">
         <span>${article.date}</span> • <span>${article.readTime}</span>
       </div>
-      <h3>${article.title}</h3>
+      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 1.85rem; color: #0A192F; margin-bottom: 20px; line-height: 1.3;">${article.title}</h3>
       <div class="modal-article-text">
         ${article.content}
       </div>
-      <div style="margin-top: 35px; padding-top: 25px; border-top: 1px solid #E5DCD0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
-        <span style="font-size: 0.9rem; color: #586860;">Ficou com alguma dúvida sobre este assunto?</span>
-        <a href="#agendamento" class="btn btn-primary" onclick="closeBlogModal()" style="font-size: 0.875rem; padding: 10px 20px;">
-          Fale com a Dra. Juliana Alves
+      <div style="margin-top: 35px; padding-top: 25px; border-top: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+        <span style="font-size: 0.95rem; color: #2D3748; font-weight: 500;">Ficou com alguma dúvida sobre este assunto?</span>
+        <a href="https://wa.me/5513996012470?text=Ol%C3%A1%2C%20Dra.%20Juliana%20Alves.%20Gostaria%20de%20uma%20orienta%C3%A7%C3%A3o%20sobre%20o%20artigo%20do%20blog." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" onclick="closeBlogModal()" style="font-size: 0.9rem; padding: 12px 22px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          Tirar Dúvidas no WhatsApp
         </a>
       </div>
     `;
@@ -407,11 +423,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.closeBlogModal = closeBlogModal;
 
+  // Registrar clique em TODO o card do blog (imagem, textos, card inteiro)
+  const blogCards = document.querySelectorAll('.blog-card');
+  blogCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      const articleId = card.getAttribute('data-blog-id');
+      if (articleId) {
+        openBlogModal(articleId);
+      }
+    });
+  });
+
+  // Registrar clique nos botões "Ler Artigo Completo"
+  const blogReadButtons = document.querySelectorAll('.blog-btn-read');
   blogReadButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
-      e.preventDefault();
+      e.stopPropagation();
       const articleId = btn.getAttribute('data-blog-id');
-      openBlogModal(articleId);
+      if (articleId) {
+        openBlogModal(articleId);
+      }
     });
   });
 
