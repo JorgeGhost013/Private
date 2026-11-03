@@ -8,15 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.site-header');
   const backToTopBtn = document.querySelector('.footer-back-to-top');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  }, { passive: true });
+  // Controle de animação de rolagem para evitar conflitos e travamentos
+  let currentScrollAnimationId = null;
+  let isProgrammaticScrolling = false;
 
-  // 2. FUNÇÃO DE ROLAGEM SUAVE MINIMALISTA (EASING SUAVE SEM SALTOS)
+  // Função de easing fluida (easeOutQuart / easeInOutCubic suave sem travadas)
   const easeInOutCubic = (t) => {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   };
@@ -24,26 +20,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const smoothScrollToTarget = (targetElement, targetHash = '') => {
     if (!targetElement) return;
 
-    // Calcular altura do cabeçalho fixo + espaçamento de respiro refinado
-    const headerEl = document.querySelector('.site-header');
-    const headerHeight = headerEl ? headerEl.offsetHeight : 80;
-    const breathingOffset = 20; // 20px de respiro para destacar o título da seção
-    const totalOffset = headerHeight + breathingOffset;
-
-    let targetPosition = 0;
-    if (targetElement.id !== 'inicio') {
-      const elementRect = targetElement.getBoundingClientRect();
-      targetPosition = Math.max(0, elementRect.top + window.pageYOffset - totalOffset);
+    // Cancelar qualquer animação anterior em andamento para não encavalar frames
+    if (currentScrollAnimationId !== null) {
+      window.cancelAnimationFrame(currentScrollAnimationId);
+      currentScrollAnimationId = null;
     }
 
-    const startPosition = window.pageYOffset;
+    // Garantir que o CSS scroll-behavior não conflite com o requestAnimationFrame
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    // Altura final do cabeçalho fixo ao rolar (74px no desktop, 68px no mobile) + respiro
+    const isMobileViewport = window.innerWidth <= 768;
+    const scrolledHeaderHeight = isMobileViewport ? 68 : 74;
+    const breathingOffset = 18;
+    const totalOffset = scrolledHeaderHeight + breathingOffset;
+
+    const startPosition = window.scrollY || window.pageYOffset;
+    let targetPosition = 0;
+
+    if (targetElement !== document.documentElement && targetElement.id !== 'inicio') {
+      const elementRect = targetElement.getBoundingClientRect();
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      targetPosition = Math.min(maxScroll, Math.max(0, elementRect.top + startPosition - totalOffset));
+    }
+
     const distance = targetPosition - startPosition;
 
-    // Se já estiver no local, não faz nada
-    if (Math.abs(distance) < 2) return;
+    // Se já estiver praticamente no local, apenas atualiza o hash
+    if (Math.abs(distance) < 2) {
+      if (targetHash && history.pushState) {
+        history.pushState(null, null, targetHash);
+      }
+      return;
+    }
 
-    // Duração proporcional à distância, mantendo a experiência ágil e luxuosa
-    const duration = Math.min(800, Math.max(450, Math.abs(distance) * 0.35));
+    isProgrammaticScrolling = true;
+
+    // Duração equilibrada e fluida (entre 420ms e 680ms)
+    const duration = Math.min(680, Math.max(420, Math.abs(distance) * 0.28));
     let startTime = null;
 
     const animationStep = (currentTime) => {
@@ -52,19 +66,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const progress = Math.min(timeElapsed / duration, 1);
       const easeProgress = easeInOutCubic(progress);
 
-      window.scrollTo(0, startPosition + distance * easeProgress);
+      window.scrollTo(0, Math.round(startPosition + distance * easeProgress));
 
-      if (timeElapsed < duration) {
-        window.requestAnimationFrame(animationStep);
+      if (progress < 1) {
+        currentScrollAnimationId = window.requestAnimationFrame(animationStep);
       } else {
-        window.scrollTo(0, targetPosition);
+        window.scrollTo(0, Math.round(targetPosition));
+        currentScrollAnimationId = null;
+        isProgrammaticScrolling = false;
         if (targetHash && history.pushState) {
           history.pushState(null, null, targetHash);
         }
       }
     };
 
-    window.requestAnimationFrame(animationStep);
+    currentScrollAnimationId = window.requestAnimationFrame(animationStep);
   };
 
   if (backToTopBtn) {
@@ -87,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Configuração de todas as âncoras internas com rolagem fluida e elegante
+  // Configuração de todas as âncoras internas com rolagem fluida e sem travamentos
   allAnchorLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
@@ -105,57 +121,79 @@ document.addEventListener('DOMContentLoaded', () => {
           if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
         }
 
-        // Atualizar estado ativo visual no menu
-        document.querySelectorAll('.nav-link').forEach(navL => navL.classList.remove('active'));
-        if (link.classList.contains('nav-link')) {
-          link.classList.add('active');
-        }
+        // Atualizar estado ativo visual no menu correspondente ao destino
+        document.querySelectorAll('.nav-link').forEach(navL => {
+          if (navL.getAttribute('href') === href) {
+            navL.classList.add('active');
+          } else {
+            navL.classList.remove('active');
+          }
+        });
 
         smoothScrollToTarget(targetElement, href);
       }
     });
   });
 
-  // 4. SCROLL SPY / ATIVAÇÃO AUTOMÁTICA DE LINK DO MENU NA ROLAGEM
+  // 4. SCROLL SPY OTIMIZADO COM REQUESTANIMATIONFRAME (NA ORDEM REAL DA PÁGINA)
   const spySections = [
     { id: 'inicio', el: document.getElementById('inicio') },
-    { id: 'fale-conosco', el: document.getElementById('fale-conosco') },
-    { id: 'como-chegar', el: document.getElementById('como-chegar') },
-    { id: 'blog', el: document.getElementById('blog') },
     { id: 'sobre', el: document.getElementById('sobre') },
+    { id: 'blog', el: document.getElementById('blog') },
+    { id: 'como-chegar', el: document.getElementById('como-chegar') },
+    { id: 'fale-conosco', el: document.getElementById('fale-conosco') },
     { id: 'agendamento', el: document.getElementById('agendamento') }
   ];
   const navItems = document.querySelectorAll('.nav-link');
+  let isScrollSpyTicking = false;
 
-  const highlightNavOnScroll = () => {
-    const headerEl = document.querySelector('.site-header');
-    const headerHeight = headerEl ? headerEl.offsetHeight : 80;
-    const scrollPos = window.scrollY + headerHeight + 60;
+  const onWindowScroll = () => {
+    const scrollY = window.scrollY || window.pageYOffset;
 
-    let currentSectionId = '';
+    if (header) {
+      if (scrollY > 30) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // Não recalcular o Scroll Spy durante a animação de clique no menu para evitar travadas
+    if (isProgrammaticScrolling) {
+      isScrollSpyTicking = false;
+      return;
+    }
+
+    const triggerLine = scrollY + 140;
+    let currentSectionId = 'inicio';
 
     spySections.forEach(({ id, el }) => {
       if (el) {
-        const top = el.offsetTop;
-        const height = el.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
+        const rect = el.getBoundingClientRect();
+        const elTop = rect.top + scrollY;
+        if (triggerLine >= elTop) {
           currentSectionId = id;
         }
       }
     });
 
-    if (currentSectionId) {
-      navItems.forEach(link => {
-        if (link.getAttribute('href') === `#${currentSectionId}`) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
-    }
+    navItems.forEach(link => {
+      if (link.getAttribute('href') === `#${currentSectionId}`) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    isScrollSpyTicking = false;
   };
 
-  window.addEventListener('scroll', highlightNavOnScroll, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!isScrollSpyTicking) {
+      window.requestAnimationFrame(onWindowScroll);
+      isScrollSpyTicking = true;
+    }
+  }, { passive: true });
 
   // 4. VERIFICADOR DE STATUS DE EXPEDIENTE EM TEMPO REAL
   // Horário: Segunda a Sexta das 09:00 às 17:30 | Sábado das 09:00 às 12:00 | Domingo fechado
