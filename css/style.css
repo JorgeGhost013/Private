@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    DRA. JULIANA ALVES - ADVOCACIA TRABALHISTA
    Design Refinado: Azul Marinho Profundo, Cinza Chumbo & Dourado Nobre
    Tipografia Premium: Playfair Display (Títulos) & Inter (Textos)
@@ -58,10 +58,10 @@
   --radius-lg: 20px;
   --radius-full: 9999px;
   --transition: all 0.3s ease;
-  --container-max: 1240px;
+  --container-max: 1200px;
 }
 
-/* Reset Global */
+/* Reset Global Padrão e Prevenção Estrita de Overflow Horizontal */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -69,37 +69,48 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: 104px;
   font-size: 16px;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text-main);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 /* Tipografia Global Premium: Playfair Display para Títulos e Inter para Textos */
 h1, h2, h3 {
   font-family: 'Playfair Display', Georgia, serif;
   color: var(--color-primary);
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 p, a, span {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Espaçamento (White Space) Generoso para Seções */
+/* Espaçamento (White Space) Generoso para Seções e Contenção de Largura */
 section {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   padding: 80px 0;
 }
 
-img, svg {
+img, svg, video, iframe {
   max-width: 100%;
   height: auto;
   display: block;
@@ -138,10 +149,9 @@ ul {
 .container {
   width: 100%;
   max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* Utilitários Tipográficos */
@@ -156,12 +166,16 @@ ul {
 .badge-tag {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 8px;
+  max-width: 100%;
   padding: 6px 14px;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  text-align: center;
   color: var(--color-primary);
   background: var(--color-gold-soft);
   border: 1px solid rgba(196, 160, 98, 0.35);
@@ -227,7 +241,10 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
+  max-width: 100%;
+  margin: 0;
   height: 84px;
   z-index: 1000;
   background: rgba(14, 34, 61, 0.95);
@@ -355,6 +372,9 @@ ul {
    ========================================================================== */
 .hero-section {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   overflow: hidden;
   padding-top: 150px;
   padding-bottom: 90px;
@@ -366,6 +386,7 @@ ul {
 /* Configuração do Vídeo de Fundo */
 .hero-video {
   width: 100%;
+  max-width: 100%;
   height: 100%;
   object-fit: cover;
   position: absolute;
@@ -391,6 +412,7 @@ ul {
 .hero-content {
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .hero-content {
@@ -402,6 +424,7 @@ ul {
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+  max-width: 100%;
 }
 
 .hero-pretitle .badge-tag {
@@ -410,6 +433,7 @@ ul {
   border-color: rgba(196, 160, 98, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  max-width: 100%;
 }
 
 .hero-title {
@@ -421,12 +445,14 @@ ul {
   margin-bottom: 22px;
   letter-spacing: -0.5px;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .hero-title span {
   color: var(--color-gold-light);
   position: relative;
-  display: inline-block;
+  display: inline;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -434,6 +460,7 @@ ul {
   font-size: 1.18rem;
   line-height: 1.8;
   color: #F1F5F9;
+  width: 100%;
   max-width: 700px;
   margin-bottom: 38px;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
@@ -445,6 +472,8 @@ ul {
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 45px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero-actions .btn-primary {
@@ -526,11 +555,17 @@ ul {
 /* Stats no Hero */
 .hero-highlights-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   padding-top: 25px;
   border-top: 1px solid rgba(255, 255, 255, 0.22);
+  width: 100%;
   max-width: 600px;
+}
+
+.highlight-item {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .highlight-item h4 {
@@ -618,7 +653,7 @@ ul {
 .hero-floating-card {
   position: absolute;
   bottom: -22px;
-  left: -24px;
+  left: 0;
   background: #FFFFFF;
   padding: 16px 20px;
   border-radius: var(--radius-md);
@@ -783,8 +818,8 @@ ul {
 
 .about-experience-stamp {
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: 16px;
+  right: 16px;
   background: var(--color-primary);
   color: #FFFFFF;
   border: 2px solid var(--color-gold);
@@ -1327,6 +1362,8 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 14px;
 }
 
@@ -1448,13 +1485,18 @@ ul {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 50px;
   align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
 }
 
 .contact-info-panel {
   padding-right: 20px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .contact-hero-quote {
@@ -1480,6 +1522,8 @@ ul {
   flex-direction: column;
   gap: 18px;
   margin-bottom: 34px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .contact-pill-card {
@@ -1487,11 +1531,14 @@ ul {
   align-items: center;
   gap: 18px;
   padding: 18px 22px;
+  width: 100%;
+  max-width: 100%;
   background: #FFFFFF;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  overflow: hidden;
 }
 
 .contact-pill-card:hover {
@@ -1522,6 +1569,11 @@ ul {
   color: #E1306C;
 }
 
+.contact-pill-info {
+  min-width: 0;
+  flex: 1;
+}
+
 .contact-pill-info span {
   display: block;
   font-size: 0.8125rem;
@@ -1531,9 +1583,12 @@ ul {
 }
 
 .contact-pill-info strong {
+  display: block;
   font-size: 1.05rem;
   color: var(--color-primary);
   font-weight: 700;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Formulário de Agendamento */
@@ -1544,6 +1599,9 @@ ul {
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-xl);
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .appointment-form-card::before {
@@ -1751,6 +1809,14 @@ textarea.form-control {
   gap: 12px;
   margin-bottom: 16px;
   font-size: 0.9375rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.footer-contact-item span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .footer-contact-item svg {
@@ -1807,9 +1873,9 @@ textarea.form-control {
    ========================================================================== */
 .whatsapp-floating {
   position: fixed;
-  bottom: 26px;
-  right: 26px;
-  z-index: 990;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1822,6 +1888,7 @@ textarea.form-control {
   font-weight: 700;
   font-size: 0.9375rem;
   text-decoration: none;
+  max-width: calc(100% - 40px);
 }
 
 .whatsapp-floating:hover {
@@ -1834,6 +1901,7 @@ textarea.form-control {
 .whatsapp-floating svg {
   width: 26px;
   height: 26px;
+  flex-shrink: 0;
 }
 
 .whatsapp-pulse {
@@ -1846,33 +1914,56 @@ textarea.form-control {
   background: #25D366;
   opacity: 0.6;
   z-index: -1;
+  pointer-events: none;
   animation: pulseEffect 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @keyframes pulseEffect {
   0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(1.3); opacity: 0; }
+  100% { transform: scale(1.22); opacity: 0; }
 }
 
 /* ==========================================================================
-   RESPONSIVIDADE (MEDIA QUERIES FLUIDAS E ADAPTATIVAS)
-   Otimização Front-end Sênior: Mobile, Tablet e Telas Grandes / Ultrawide
+   RESPONSIVIDADE E BREAKPOINTS ESPECÍFICOS POR DISPOSITIVO
+   Eliminação total de overflow horizontal e adaptação fluida de contêineres
    ========================================================================== */
 
+/* Regra de Segurança Global para filhos de Grid e Flexbox */
+.about-grid > *,
+.services-grid > *,
+.blog-grid > *,
+.location-grid > *,
+.contact-grid > *,
+.footer-top-grid > *,
+.form-row > *,
+.spec-list > *,
+.hero-highlights-strip > *,
+.credentials-grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.address-item > div {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
 /* --------------------------------------------------------------------------
-   1. TELAS GRANDES E ULTRAWIDE (MIN-WIDTH: 1440PX)
+   1. DESKTOP / TELAS GRANDES (769PX+)
+   Preserva alinhamento centralizado com max-width: 1200px e margin: 0 auto
    -------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+  .container,
+  .hero-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
 @media (min-width: 1440px) {
-  :root {
-    --container-max: 1360px;
-  }
-
-  .container {
-    max-width: 1360px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
   section,
   .about-section,
   .services-section,
@@ -1924,14 +2015,13 @@ textarea.form-control {
 }
 
 /* --------------------------------------------------------------------------
-   2. TELAS MÉDIAS E TABLETS (MAX-WIDTH: 1024PX)
+   2. TABLETS GRANDES E NOTEBOOKS COMPACTOS (MAX-WIDTH: 1024PX)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   html {
     scroll-padding-top: 90px;
   }
 
-  /* Redução equilibrada de espaçamento vertical */
   section,
   .about-section,
   .services-section,
@@ -1942,14 +2032,16 @@ textarea.form-control {
     padding: 60px 0;
   }
 
-  .container {
-    padding-left: 24px;
-    padding-right: 24px;
+  .container,
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  /* Tipografia Fluida no Tablet */
   h1, .hero-title {
-    font-size: clamp(2.2rem, 3.8vw, 2.75rem);
+    font-size: clamp(2.1rem, 3.8vw, 2.75rem);
     line-height: 1.22;
   }
 
@@ -1970,7 +2062,6 @@ textarea.form-control {
     font-size: 1.025rem;
   }
 
-  /* Hero Section */
   .hero-section {
     min-height: 75vh;
     padding-top: 130px;
@@ -1979,12 +2070,13 @@ textarea.form-control {
 
   .hero-container,
   .hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 36px;
     text-align: center;
   }
 
   .hero-content {
+    width: 100%;
     max-width: 720px;
     margin: 0 auto;
   }
@@ -2008,7 +2100,6 @@ textarea.form-control {
     margin: 0 auto;
   }
 
-  /* Credenciais */
   .credentials-banner {
     padding: 36px 0;
   }
@@ -2018,9 +2109,8 @@ textarea.form-control {
     gap: 20px;
   }
 
-  /* Conversão de Layouts: Grids para 2 colunas ou 1 coluna */
   .about-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 45px;
   }
 
@@ -2035,28 +2125,28 @@ textarea.form-control {
 
   .services-grid,
   .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
 
-  .location-grid {
-    grid-template-columns: 1fr;
+  .location-grid,
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
     gap: 36px;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
+  .contact-info-panel {
+    padding-right: 0;
   }
 
   .footer-top-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 36px;
   }
 }
 
 /* --------------------------------------------------------------------------
-   3. TELAS PEQUENAS E MOBILE (MAX-WIDTH: 768PX)
+   3. TABLETS E TELAS MÉDIAS (481PX A 768PX) E BASE MOBILE (MAX-WIDTH: 768PX)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   html {
@@ -2064,7 +2154,6 @@ textarea.form-control {
     font-size: 15px;
   }
 
-  /* Redução estrita de White Space (de 80px para 45px-50px) */
   section,
   .about-section,
   .services-section,
@@ -2075,33 +2164,38 @@ textarea.form-control {
     padding: 48px 0 !important;
   }
 
-  .container {
-    padding-left: 18px;
-    padding-right: 18px;
+  .container,
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .section-title-wrap {
     margin-bottom: 28px;
+    max-width: 100%;
   }
 
-  /* Tipografia Fluida no Mobile: Sem quebra ou encavalamento */
+  /* Tipografia Fluida no Mobile e Tablet Compacto */
   h1, .hero-title {
-    font-size: clamp(1.75rem, 6.2vw, 2.2rem) !important;
-    line-height: 1.25 !important;
+    font-size: clamp(1.75rem, 5.5vw, 2.2rem);
+    line-height: 1.25;
     letter-spacing: -0.3px;
     margin-bottom: 16px;
+    max-width: 100%;
     word-break: normal;
     overflow-wrap: break-word;
-    hyphens: auto;
   }
 
   h2, .section-title, .about-title {
-    font-size: clamp(1.45rem, 5.2vw, 1.85rem) !important;
-    line-height: 1.28 !important;
+    font-size: clamp(1.45rem, 5vw, 1.85rem);
+    line-height: 1.28;
     margin-bottom: 14px;
+    max-width: 100%;
   }
 
-  h3, .service-title, .blog-card-title {
+  h3, .service-title, .blog-title {
     font-size: 1.2rem;
     line-height: 1.35;
   }
@@ -2110,22 +2204,30 @@ textarea.form-control {
     font-size: 0.985rem;
     line-height: 1.65;
     margin-bottom: 28px;
+    max-width: 100%;
     padding: 0 4px;
   }
 
   .section-subtitle {
     font-size: 0.95rem;
     line-height: 1.6;
+    max-width: 100%;
   }
 
   .badge-tag {
     font-size: 0.72rem;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     padding: 5px 12px;
+    max-width: 100%;
   }
 
-  /* Cabeçalho e Navegação Mobile com Menu Hambúrguer */
+  /* Cabeçalho 100% da Largura da Tela sem Margens Laterais */
   .site-header {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
     height: 74px;
   }
 
@@ -2135,6 +2237,7 @@ textarea.form-control {
 
   .header-logo-img {
     height: 42px;
+    max-width: 210px;
   }
 
   .site-header.scrolled .header-logo-img {
@@ -2147,6 +2250,7 @@ textarea.form-control {
     justify-content: center;
     width: 44px;
     height: 44px;
+    flex-shrink: 0;
     border-radius: var(--radius-sm);
     color: #FAF7F2;
   }
@@ -2160,7 +2264,9 @@ textarea.form-control {
     position: fixed;
     top: 74px;
     left: 0;
+    right: 0;
     width: 100%;
+    max-width: 100%;
     max-height: 0;
     opacity: 0;
     visibility: hidden;
@@ -2226,12 +2332,14 @@ textarea.form-control {
     font-size: 1rem;
   }
 
-  /* Hero Section e Background de Vídeo no Mobile */
+  /* Hero Section e Vídeo de Fundo */
   .hero-section {
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     min-height: 100svh;
-    padding-top: 110px;
-    padding-bottom: 50px;
+    padding-top: 110px !important;
+    padding-bottom: 50px !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2239,6 +2347,7 @@ textarea.form-control {
 
   .hero-video {
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
@@ -2253,62 +2362,23 @@ textarea.form-control {
 
   .hero-actions {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
     width: 100%;
+    max-width: 100%;
     margin-bottom: 30px;
   }
 
   .hero-actions .btn {
     width: 100%;
+    max-width: 100%;
     justify-content: center;
     padding: 14px 20px;
     font-size: 0.965rem;
   }
 
-  .hero-highlights-strip {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    max-width: 100%;
-    padding: 16px;
-    border-radius: var(--radius-md);
-  }
-
-  .highlight-item {
-    padding: 8px 12px;
-  }
-
-  .highlight-item:not(:last-child) {
-    border-bottom: 1px solid rgba(196, 160, 98, 0.2);
-  }
-
-  .highlight-item h4 {
-    font-size: 1.35rem;
-  }
-
-  .highlight-item p {
-    font-size: 0.8125rem;
-  }
-
-  /* Credenciais Banner */
-  .credentials-banner {
-    padding: 30px 0;
-  }
-
-  .credentials-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding-left: 12px;
-  }
-
-  .credential-pill {
-    width: 100%;
-  }
-
-  /* Conversão de Layouts: Empilhamento Vertical de Grids e Flexbox */
+  /* Empilhamento Vertical de Grids Principais */
   .about-grid,
   .services-grid,
   .blog-grid,
@@ -2317,28 +2387,37 @@ textarea.form-control {
   .footer-top-grid,
   .form-row,
   .spec-list {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 24px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-visual {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .about-visual-card {
-    max-width: 320px;
+    width: 100%;
+    max-width: 340px;
     margin: 0 auto;
   }
 
   .about-experience-stamp {
-    width: 85px;
-    height: 85px;
-    top: -10px;
-    right: -10px;
+    width: 82px;
+    height: 82px;
+    top: 8px;
+    right: 8px;
   }
 
   .about-experience-stamp .year {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .about-experience-stamp .label {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
   }
 
   .about-lead {
@@ -2353,17 +2432,47 @@ textarea.form-control {
 
   .about-specializations {
     padding: 18px 16px;
+    max-width: 100%;
   }
 
   .about-quote {
     padding: 16px;
     font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .about-actions,
+  .location-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-actions .btn,
+  .location-actions .btn {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
   }
 
   /* Cards de Serviços e Blog */
-  .service-card,
-  .blog-card {
+  .service-card {
+    width: 100%;
+    max-width: 100%;
     padding: 24px 20px;
+  }
+
+  .blog-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .blog-content {
+    padding: 22px 20px;
   }
 
   .service-desc,
@@ -2372,32 +2481,50 @@ textarea.form-control {
     line-height: 1.65;
   }
 
-  /* Formulário de Agendamento */
-  .appointment-form-card {
-    padding: 24px 18px;
+  /* Formulário de Agendamento e Cards de Localização/Contato */
+  .appointment-form-card,
+  .location-info-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 26px 20px;
     border-radius: var(--radius-md);
   }
 
+  .hours-highlight-card {
+    padding: 18px 16px;
+    max-width: 100%;
+  }
+
+  .contact-pill-card {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+
+  .contact-pill-card:hover {
+    transform: none;
+  }
+
   .form-control {
+    width: 100%;
+    max-width: 100%;
     padding: 12px 14px;
     font-size: 0.9375rem;
   }
 
-  /* Card de Localização e Contato */
-  .location-info-card,
-  .contact-info-card {
-    padding: 26px 18px;
-    border-radius: var(--radius-md);
-  }
-
-  .office-map-frame {
-    height: 280px;
+  .map-container-box,
+  .map-container-box iframe {
+    min-height: 300px;
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Rodapé */
   .site-footer {
     padding-top: 50px;
     padding-bottom: 24px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .footer-top-grid {
@@ -2415,6 +2542,7 @@ textarea.form-control {
 
   .footer-bottom div[style*="text-align: right"] {
     text-align: center !important;
+    max-width: 100% !important;
   }
 
   /* Modal do Blog Responsivo */
@@ -2423,6 +2551,8 @@ textarea.form-control {
   }
 
   .modal-container {
+    width: 100%;
+    max-width: 100%;
     max-height: 92vh;
     border-radius: var(--radius-md);
   }
@@ -2449,17 +2579,18 @@ textarea.form-control {
     height: 34px;
   }
 
-  /* Botão Flutuante do WhatsApp Mobile */
+  /* Botão Flutuante do WhatsApp Fixo */
   .whatsapp-floating {
-    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
-    right: calc(18px + env(safe-area-inset-right, 0px));
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
     padding: 0;
     width: 52px;
     height: 52px;
     border-radius: var(--radius-full);
     justify-content: center;
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
-    z-index: 990;
   }
 
   .whatsapp-floating span {
@@ -2472,34 +2603,156 @@ textarea.form-control {
   }
 }
 
-/* --------------------------------------------------------------------------
-   4. TELAS ULTRACOMPACTAS (MAX-WIDTH: 480PX)
-   -------------------------------------------------------------------------- */
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.65rem !important;
-    line-height: 1.25 !important;
+/* Breakpoint Específico: Tablets e Telas Médias (481px a 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container,
+  .hero-container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
-  .section-title {
-    font-size: 1.45rem !important;
+  /* Disposição adaptável dos blocos de métricas/estatísticas em Grid de 2 ou 3 colunas */
+  .hero-highlights-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
   }
 
-  .btn {
-    padding: 12px 16px;
-    font-size: 0.9rem;
+  .highlight-item {
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .highlight-item h4 {
+    font-size: 1.45rem;
   }
 
   .credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-actions .btn {
+    width: auto;
+    min-width: 210px;
+    flex: 1 1 220px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. MOBILE PADRÃO / MÉDIO (376PX A 480PX) E GERAL ATÉ 480PX
+   Espaçamentos laterais fluidos e botões centralizados e alinhados verticalmente
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .container,
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .hero-title {
+    font-size: clamp(1.6rem, 5.5vw, 1.95rem);
+    line-height: 1.25;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 5vw, 1.7rem);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .btn,
+  .hero-actions .btn,
+  .about-actions .btn,
+  .location-actions .btn,
+  .form-actions .btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 13px 16px;
+    font-size: 0.925rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Blocos de Métricas / Estatísticas em Coluna Única Limpa */
+  .hero-highlights-strip {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .highlight-item {
+    padding: 8px 10px;
+    text-align: center;
+  }
+
+  .highlight-item:not(:last-child) {
+    border-bottom: 1px solid rgba(196, 160, 98, 0.2);
+  }
+
+  .highlight-item h4 {
+    font-size: 1.35rem;
+  }
+
+  .highlight-item p {
+    font-size: 0.8125rem;
+  }
+
+  .credentials-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
     padding-left: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .credential-pill {
+    width: 100%;
+    max-width: 100%;
   }
 
   .about-visual-card {
+    width: 100%;
     max-width: 100%;
   }
 
   .about-photo-tag {
-    padding: 10px 14px;
+    padding: 10px 12px;
   }
 
   .about-photo-tag h4 {
@@ -2510,24 +2763,148 @@ textarea.form-control {
     font-size: 0.75rem;
   }
 
+  .service-card,
+  .location-info-card,
   .appointment-form-card {
-    padding: 20px 14px;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+
+  .blog-content {
+    padding: 20px 16px;
   }
 
   .form-actions .btn-whatsapp {
-    font-size: 0.975rem !important;
-    padding: 13px 18px !important;
+    font-size: 0.95rem !important;
+    padding: 13px 16px !important;
   }
 
   .whatsapp-floating {
-    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
-    right: calc(14px + env(safe-area-inset-right, 0px));
-    width: 48px;
-    height: 48px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
   }
 
   .whatsapp-floating svg {
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Breakpoint Específico: Mobile Padrão / Médio (376px a 480px) */
+@media (min-width: 376px) and (max-width: 480px) {
+  .container,
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-actions,
+  .about-actions,
+  .location-actions,
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-actions .btn,
+  .about-actions .btn,
+  .location-actions .btn,
+  .form-actions .btn {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. MOBILE PEQUENO (ATÉ 375PX - EX: IPHONE SE, GALAXY A ANTIGOS)
+   -------------------------------------------------------------------------- */
+@media (max-width: 375px) {
+  .container,
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Ajuste da fonte dos títulos principais (h1) para evitar quebras inadequadas */
+  h1, .hero-title {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.2px;
+  }
+
+  h2, .section-title, .about-title {
+    font-size: clamp(1.3rem, 4.8vw, 1.55rem) !important;
+  }
+
+  .header-logo-img {
+    height: 36px;
+    max-width: 175px;
+  }
+
+  .badge-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.5px;
+    padding: 5px 10px;
+  }
+
+  /* Botões de ação e cards ocupando 100% com margem/padding lateral segura */
+  .btn,
+  .hero-actions .btn,
+  .about-actions .btn,
+  .location-actions .btn,
+  .form-actions .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px 14px !important;
+    font-size: 0.875rem !important;
+  }
+
+  .service-card,
+  .blog-card,
+  .location-info-card,
+  .appointment-form-card,
+  .contact-pill-card,
+  .about-visual-card,
+  .hours-highlight-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .service-card,
+  .location-info-card,
+  .appointment-form-card {
+    padding: 18px 14px;
+  }
+
+  .blog-content {
+    padding: 18px 14px;
+  }
+
+  .contact-pill-card {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+
+  .contact-pill-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-pill-info strong {
+    font-size: 0.92rem;
   }
 }
